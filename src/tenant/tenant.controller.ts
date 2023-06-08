@@ -4,7 +4,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 
 @ApiTags('tenant')
-@Controller('tenant')
+@Controller()
 export class TenantController {
   constructor(private readonly tenantService: TenantService) {}
 

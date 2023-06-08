@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MerchantService } from './merchant.service';
 import { CreateMerchantDto } from './dto/create-merchant.dto';
 import { UpdateMerchantDto } from './dto/update-merchant.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('merchant')
+@ApiTags('merchant')
+@Controller()
 export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 
