@@ -12,7 +12,7 @@ export class MerchantService {
     private merchantRepository:Repository<Merchant>
   ){}
   create(createMerchantDto: CreateMerchantDto) {
-    return 'This action adds a new merchant';
+    return this.merchantRepository.save(createMerchantDto);
   }
 
   findAll(): Promise<Merchant[]>{
