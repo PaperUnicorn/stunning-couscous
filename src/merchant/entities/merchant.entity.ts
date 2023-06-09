@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
+import { Profile } from './profile.entity';
 
 @Entity()
 export class Merchant {
@@ -13,4 +14,8 @@ export class Merchant {
   
     @Column({ default: true })
     isActive: boolean;
+
+    @OneToOne(() => Profile)
+    @JoinColumn()
+    profile: Profile
 }
