@@ -12,6 +12,9 @@ export class Role {
   
     @Column()
     priority: number;
+
+    @Column()
+    createdBy: string;
   
     permissions: Permission[];
 }

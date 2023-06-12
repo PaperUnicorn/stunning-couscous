@@ -14,12 +14,14 @@ import { PermissionService } from './permission/permission.service';
 import { PermissionController } from './permission/permission.controller';
 import { RoleController } from './role/role.controller';
 import { RoleService } from './role/role.service';
+import { StorefrontController } from './storefront/storefront.controller';
+import { StorefrontService } from './storefront/storefront.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary]),
   ],
-  controllers: [MerchantController, ProfileController, UserController, PermissionController, RoleController],
-  providers: [MerchantService, ProfileService, UserService, PermissionService, RoleService]
+  controllers: [MerchantController, ProfileController, UserController, PermissionController, RoleController, StorefrontController],
+  providers: [MerchantService, ProfileService, UserService, PermissionService, RoleService, StorefrontService]
 })
 export class MerchantModule {}
