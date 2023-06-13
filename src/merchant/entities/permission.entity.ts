@@ -1,9 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToOne } from 'typeorm';
-import { Profile } from './profile.entity';
+import { Entity, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Role } from './role.entity';
 
 @Entity()
 export class Permission {
+
+    @PrimaryColumn()
+    id: string;
   
     @Column()
     action: string;

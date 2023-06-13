@@ -16,10 +16,15 @@ import { RoleController } from './role/role.controller';
 import { RoleService } from './role/role.service';
 import { StorefrontController } from './storefront/storefront.controller';
 import { StorefrontService } from './storefront/storefront.service';
+import { Role } from './entities/role.entity';
+import { Storefront } from './entities/storefront.entity';
+import { StoreProfile } from './entities/store.profile.entity';
+import { Permission } from './entities/permission.entity';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary]),
+    TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary, Role, Permission, User, Storefront, StoreProfile]),
   ],
   controllers: [MerchantController, ProfileController, UserController, PermissionController, RoleController, StorefrontController],
   providers: [MerchantService, ProfileService, UserService, PermissionService, RoleService, StorefrontService]

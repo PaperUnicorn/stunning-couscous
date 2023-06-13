@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Merchant } from "./merchant.entity";
 
 @Entity()
 export class User{
@@ -13,4 +14,7 @@ export class User{
 
     @Column()
     email: string;
+
+    @ManyToOne(() => Merchant ,(merchant) => merchant.users)
+    merchantId: number
 }

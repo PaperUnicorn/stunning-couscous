@@ -15,14 +15,31 @@ export class StorefrontService {
     ){}
 
     async createStore(request: CreateStorefrontDto): Promise<Storefront>{
-        const profile = new StoreProfile()
-        profile.city = request.city;
-
-        const store = new Storefront();
-        store.name = request.name;
-        store.isActive = true;
-        store.storeProfile = profile;
+        const storeProfile = {
+            city: request.city,
+            state: request.state,
+            pincode: request.pincode,
+            address: request.address,
+            region: request.region,
+            manager: request.manager,
+        }
+        const store: Partial<Storefront> = {
+            name: request.name,
+            isActive: true,
+            storeProfile,
+        }
         return await this.storefrontRepository.save(store);
         
+    }
+
+    async findStoreById(id: number): Promise<Storefront>{
+        return this.storefrontRepository.findOne({
+            relations:{
+                storeProfile: true
+            },
+            where: {
+                id
+            }
+        })
     }
 }

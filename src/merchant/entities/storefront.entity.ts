@@ -12,6 +12,6 @@ export class Storefront {
     @Column({ default: true })
     isActive: boolean;
 
-    @OneToOne(() => StoreProfile , {cascade:true})
+    @Column(() => StoreProfile)
     storeProfile: StoreProfile;
 }

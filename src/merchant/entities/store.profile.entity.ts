@@ -1,9 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {Column} from 'typeorm';
 
-@Entity()
 export class StoreProfile {
-    @PrimaryGeneratedColumn()
-    id: number;
   
     @Column()
     city: string;
