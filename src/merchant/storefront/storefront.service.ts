@@ -10,8 +10,6 @@ export class StorefrontService {
     constructor(
         @InjectRepository(Storefront)
         private storefrontRepository:Repository<Storefront>,
-        @InjectRepository(StoreProfile)
-        private storeProfileRepository:Repository<StoreProfile>
     ){}
 
     async createStore(request: CreateStorefrontDto): Promise<Storefront>{

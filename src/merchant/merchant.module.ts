@@ -3,8 +3,6 @@ import { MerchantService } from './merchant.service';
 import { MerchantController } from './merchant.controller';
 import { Merchant } from './entities/merchant.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProfileController } from './profile/profile.controller';
-import { ProfileService } from './profile/profile.service';
 import { Profile } from './entities/profile.entity';
 import { Preferences } from './entities/preferences.entity';
 import { Summary } from './entities/summary.entity';
@@ -26,7 +24,7 @@ import { User } from './entities/user.entity';
   imports: [
     TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary, Role, Permission, User, Storefront, StoreProfile]),
   ],
-  controllers: [MerchantController, ProfileController, UserController, PermissionController, RoleController, StorefrontController],
-  providers: [MerchantService, ProfileService, UserService, PermissionService, RoleService, StorefrontService]
+  controllers: [MerchantController, UserController, PermissionController, RoleController, StorefrontController],
+  providers: [MerchantService, UserService, PermissionService, RoleService, StorefrontService]
 })
 export class MerchantModule {}

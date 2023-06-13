@@ -16,8 +16,7 @@ export class Merchant {
     @Column({ default: true })
     isActive: boolean;
 
-    @OneToOne(() => Profile)
-    @JoinColumn()
+    @Column(() => Profile)
     profile: Profile
 
     @OneToMany(()=> User , (user) => user.merchantId)
