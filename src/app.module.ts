@@ -4,10 +4,11 @@ import { AppService } from './app.service';
 import { MerchantModule } from './merchant/merchant.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Merchant } from './merchant/entities/merchant.entity';
 import { TenantModule } from './tenant/tenant.module';
-import { Tenant } from './tenant/entities/tenant.entity';
 import { RouterModule } from '@nestjs/core';
+import { PassportModule } from '@nestjs/passport';
+import { ApiKeyStrategy } from './apikey.strategy';
+import { AuthService } from './auth.service';
 
 @Module({
   imports: [
@@ -33,9 +34,10 @@ import { RouterModule } from '@nestjs/core';
       },
     ]),
     MerchantModule,
-    TenantModule
+    TenantModule,
+    PassportModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService, ApiKeyStrategy],
 })
 export class AppModule {}

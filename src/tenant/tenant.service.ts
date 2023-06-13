@@ -25,4 +25,14 @@ export class TenantService {
     });
   }
 
+  async findOneByApiKey(apiKey: string): Promise<boolean> {
+    const merchant = await this.repository.findOne({
+      where: {
+        apiKey
+      }
+    });
+
+    return Object.keys(merchant).length != 0 
+  }
+
 }
