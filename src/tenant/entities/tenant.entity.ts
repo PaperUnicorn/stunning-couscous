@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Merchant } from "src/merchant/entities/merchant.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Tenant {
@@ -17,5 +18,8 @@ export class Tenant {
     
     @Column({ default: true })
     isActive: boolean;
+
+    @OneToMany(() => Merchant, (merchant) => merchant.tenant)
+    merchants: Merchant[]
 
 }

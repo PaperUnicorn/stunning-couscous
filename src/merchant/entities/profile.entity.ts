@@ -1,4 +1,4 @@
-import { Entity, Column } from "typeorm";
+import { Column } from "typeorm";
 import { Preferences } from "./preferences.entity";
 import { Summary } from "./summary.entity";
 

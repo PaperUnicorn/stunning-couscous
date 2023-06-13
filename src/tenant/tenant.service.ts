@@ -15,7 +15,14 @@ export class TenantService {
   }
 
   async findOne(id: number): Promise<Tenant> {
-    return await this.repository.findOneBy({id});
+    return await this.repository.findOne({
+      relations:{
+        merchants: true
+      },
+      where: {
+        id
+      }
+    });
   }
 
 }
