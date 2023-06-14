@@ -19,8 +19,16 @@ export class MerchantService {
     return this.merchantRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} merchant`;
+  async findOne(id: string) {
+    return await this.merchantRepository.findOne({
+      relations: {
+        users: true,
+        stores: true
+      },
+      where:{
+        id
+      }
+    });
   }
 
   update(id: number, updateMerchantDto: UpdateMerchantDto) {

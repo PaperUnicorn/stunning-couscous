@@ -2,11 +2,12 @@ import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, OneToMany
 import { Profile } from './profile.entity';
 import { User } from './user.entity';
 import { Tenant } from 'src/tenant/entities/tenant.entity';
+import { Storefront } from './storefront.entity';
 
 @Entity()
 export class Merchant {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
   
     @Column()
     firstName: string;
@@ -22,6 +23,9 @@ export class Merchant {
 
     @OneToMany(()=> User , (user) => user.merchantId)
     users: User[]
+
+    @OneToMany(()=> Storefront , (storefront) => storefront.merchant)
+    stores: Storefront[]
 
     @ManyToOne(()=> Tenant, (tenant) => tenant.id)
     tenant: string;

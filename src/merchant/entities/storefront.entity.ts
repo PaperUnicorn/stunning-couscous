@@ -1,10 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { StoreProfile } from './store.profile.entity';
+import { Merchant } from './merchant.entity';
 
 @Entity()
 export class Storefront {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
   
     @Column()
     name: string;
@@ -14,4 +15,7 @@ export class Storefront {
 
     @Column(() => StoreProfile)
     storeProfile: StoreProfile;
+
+    @ManyToOne(()=> Merchant, (merchant) => merchant.stores)
+    merchant: string;
 }

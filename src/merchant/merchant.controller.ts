@@ -24,7 +24,7 @@ export class MerchantController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.merchantService.findOne(+id);
+    return this.merchantService.findOne(id);
   }
 
   @Patch(':id')

@@ -32,7 +32,7 @@ export class TenantService {
       }
     });
 
-    return Object.keys(merchant).length != 0 
+    return merchant != null || undefined
   }
 
 }
