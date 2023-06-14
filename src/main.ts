@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   const config = new DocumentBuilder()
     .setTitle('Customer Loyalty Platform')
+    .addApiKey({type: 'apiKey', name: 'api-key'},'api-key')
     .setDescription('APIS for testing')
     .setVersion('1.0')
     .addTag('clp')

@@ -2,10 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { MerchantService } from './merchant.service';
 import { CreateMerchantDto } from './dto/create-merchant.dto';
 import { UpdateMerchantDto } from './dto/update-merchant.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { ApiKeyAuthGuard } from 'src/apikey-auth.guard';
 
 @ApiTags('merchant')
+@ApiSecurity('api-key')
 @UseGuards(ApiKeyAuthGuard)
 @Controller()
 export class MerchantController {
