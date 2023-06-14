@@ -2,9 +2,9 @@ import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "t
 import { Merchant } from "./merchant.entity";
 
 @Entity()
-export class User{
+export class User {
     @PrimaryGeneratedColumn()
-    id: number
+    id: string
 
     @Column()
     username: string;
@@ -16,5 +16,5 @@ export class User{
     email: string;
 
     @ManyToOne(() => Merchant ,(merchant) => merchant.users)
-    merchantId: number
+    merchantId: string
 }

@@ -12,12 +12,12 @@ export class UserService {
         private repository:Repository<User>
       ){}
 
-    async create(request: CreateUserDto): Promise<User>{
+    async create(request: CreateUserDto, merchantId: string): Promise<User>{
       const user: Partial<User> = {
         email: request.email,
         username: request.username,
         password: request.password,
-        merchantId: request.merchantId
+        merchantId: merchantId
       }
       return await this.repository.save(user);
     }
