@@ -1,12 +1,18 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { MerchantService } from '../merchant.service';
+import { MerchantGuard } from '../merchant.guard';
 
 @Controller(':id/user')
 @ApiTags('user')
+@UseGuards(MerchantGuard)
 export class UserController {
-    constructor(private readonly service: UserService){}
+    constructor(
+        private readonly service: UserService,
+        private readonly merchantService: MerchantService
+        ){}
 
     @Post()
     create(@Param('id') merchantId: string, @Body() request: CreateUserDto) {
@@ -15,7 +21,8 @@ export class UserController {
 
 
     @Get(':userId')
-    getUserById(@Param('userId') userId: string) {
+    getUserById(@Param('id') merchantId: string, @Param('userId') userId: string) {
+
         return this.service.getById(userId);
     }
 }

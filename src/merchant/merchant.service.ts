@@ -19,7 +19,7 @@ export class MerchantService {
     return this.merchantRepository.find();
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<Merchant> {
     return await this.merchantRepository.findOne({
       relations: {
         users: true,
