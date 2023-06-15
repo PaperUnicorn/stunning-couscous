@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Merchant } from "./merchant.entity";
+import { Role } from "./role.entity";
 
 @Entity()
 export class User {
@@ -15,6 +16,10 @@ export class User {
     @Column()
     email: string;
 
+    @OneToOne(() => Role)
+    @JoinColumn()
+    role: Role
+
     @ManyToOne(() => Merchant ,(merchant) => merchant.users)
-    merchantId: string
+    merchant: string
 }

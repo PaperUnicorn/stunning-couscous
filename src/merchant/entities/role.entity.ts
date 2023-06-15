@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Permission } from './permission.entity';
 
 @Entity()
 export class Role {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
 
     @Column()
     name: string;
@@ -15,6 +15,8 @@ export class Role {
 
     @Column()
     createdBy: string;
-  
+
+    @ManyToMany(() => Permission)
+    @JoinTable()
     permissions: Permission[];
 }

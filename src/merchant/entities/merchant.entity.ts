@@ -21,7 +21,7 @@ export class Merchant {
     @Column(() => Profile)
     profile: Profile
 
-    @OneToMany(()=> User , (user) => user.merchantId)
+    @OneToMany(()=> User , (user) => user.merchant)
     users: User[]
 
     @OneToMany(()=> Storefront , (storefront) => storefront.merchant)

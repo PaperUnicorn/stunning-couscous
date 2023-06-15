@@ -1,5 +1,4 @@
 import { Entity, Column, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Role } from './role.entity';
 
 @Entity()
 export class Permission {
@@ -12,7 +11,5 @@ export class Permission {
   
     @Column()
     domain: string;
-  
-    @ManyToOne(()=> Role , (role) => role.permissions)
-    roleId: number;
+
 }
