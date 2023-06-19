@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { Role } from '../entities/role.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -21,11 +22,11 @@ export class UserService {
       if(role == null){
         throw new HttpException('must have a valid role', HttpStatus.BAD_REQUEST);
       }
-      
+      const hashedPassword = await bcrypt.hash(request.password, 1)
       const user: Partial<User> = {
         email: request.email,
         username: request.username,
-        password: request.password,
+        password: hashedPassword,
         role,
         merchant: merchantId
       }

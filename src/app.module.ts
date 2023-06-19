@@ -9,6 +9,7 @@ import { RouterModule } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
 import { ApiKeyStrategy } from './apikey.strategy';
 import { AuthService } from './auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AuthService } from './auth.service';
     MerchantModule,
     TenantModule,
     PassportModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthService, ApiKeyStrategy],
