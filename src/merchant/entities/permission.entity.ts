@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Permission {
@@ -11,5 +11,8 @@ export class Permission {
   
     @Column()
     domain: string;
+
+    @Column()
+    key: string;
 
 }
