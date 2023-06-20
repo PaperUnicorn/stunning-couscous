@@ -43,4 +43,10 @@ export class UserService {
         }
       }) 
   }
+
+  async findOneByUsername(username: string){
+    return await this.repository.findOneBy({
+      username
+    });
+  }
 }
