@@ -4,17 +4,19 @@ import { AuthController } from './auth.controller';
 import { MerchantModule } from 'src/merchant/merchant.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './jwt.strategy';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
     MerchantModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: 'sadasa',
       signOptions: { expiresIn: '60s' },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy, LocalStrategy],
   controllers: [AuthController]
 })
 export class AuthModule {}

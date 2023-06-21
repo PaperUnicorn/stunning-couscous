@@ -25,6 +25,7 @@ import { User } from './entities/user.entity';
     TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary, Role, Permission, User, Storefront, StoreProfile]),
   ],
   controllers: [MerchantController, UserController, PermissionController, RoleController, StorefrontController],
-  providers: [MerchantService, UserService, PermissionService, RoleService, StorefrontService]
+  providers: [MerchantService, UserService, PermissionService, RoleService, StorefrontService],
+  exports: [UserService]
 })
 export class MerchantModule {}

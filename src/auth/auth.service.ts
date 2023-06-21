@@ -15,9 +15,8 @@ export class AuthService {
           throw new UnauthorizedException();
         }
         const { password, ...result } = user;
-        // TODO: Generate a JWT and return it here
-        // instead of the user object
-        return result;
+        
+        return this.login(user);
       }
 
     async login(user: any) {
