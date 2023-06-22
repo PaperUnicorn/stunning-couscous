@@ -9,17 +9,10 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @HttpCode(HttpStatus.OK)
-    @UseGuards(LocalAuthGuard)
     @Post('login')
     signIn(@Body() signInDto: AuthDTO) {
-      return this.authService.login(signInDto);
+      return this.authService.signIn(signInDto.username,signInDto.password);
     }
 
-    @HttpCode(HttpStatus.OK)
-    @UseGuards(JwtAuthGuard)
-    @Get('dasdas')
-    dymmy() {
-      return {val:'accepted'}
-    }
     
 }
