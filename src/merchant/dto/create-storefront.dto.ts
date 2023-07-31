@@ -2,6 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsNotEmpty, IsBoolean } from "class-validator";
 
 export class CreateStorefrontDto {
+
+    Id: string;
     @ApiProperty()
     @IsString()
     @IsNotEmpty()

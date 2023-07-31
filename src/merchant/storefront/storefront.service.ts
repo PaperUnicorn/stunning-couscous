@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateStorefrontDto } from '../dto/create-storefront.dto';
 import { StoreProfile } from '../entities/store.profile.entity';
+import { UpdateStorefrontDto } from '../dto/update-storefront.dto';
 
 @Injectable()
 export class StorefrontService {
@@ -12,7 +13,7 @@ export class StorefrontService {
         private storefrontRepository:Repository<Storefront>,
     ){}
 
-    async createStore(request: CreateStorefrontDto, merchantId: string): Promise<Storefront>{
+    async createStore(request: CreateStorefrontDto | UpdateStorefrontDto, merchantId: string): Promise<Storefront>{
         const storeProfile = {
             city: request.city,
             state: request.state,
@@ -22,6 +23,7 @@ export class StorefrontService {
             manager: request.manager,
         }
         const store: Partial<Storefront> = {
+            id: request.Id,
             name: request.name,
             isActive: true,
             merchant: merchantId,
@@ -32,7 +34,7 @@ export class StorefrontService {
     }
 
     async findStoreById(id: string): Promise<Storefront>{
-        return this.storefrontRepository.findOne({
+        return await this.storefrontRepository.findOne({
             relations:{
                 storeProfile: true
             },
