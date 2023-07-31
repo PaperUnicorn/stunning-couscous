@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TenantModule } from './tenant/tenant.module';
 import { RouterModule } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
-import { ApiKeyStrategy } from './apikey.strategy';
 import { AuthService } from './auth.service';
 import { AuthModule } from './auth/auth.module';
 
@@ -40,6 +39,6 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService, ApiKeyStrategy],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}

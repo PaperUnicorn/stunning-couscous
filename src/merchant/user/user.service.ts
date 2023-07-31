@@ -22,7 +22,8 @@ export class UserService {
       if(role == null){
         throw new HttpException('must have a valid role', HttpStatus.BAD_REQUEST);
       }
-      const hashedPassword = await bcrypt.hash(request.password, 1)
+      console.log(request)
+      const hashedPassword = await bcrypt.hash(request.password, 0)
       const user: Partial<User> = {
         email: request.email,
         username: request.username,
