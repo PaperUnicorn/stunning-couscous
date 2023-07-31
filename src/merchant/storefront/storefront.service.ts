@@ -41,4 +41,15 @@ export class StorefrontService {
             }
         })
     }
+
+    async findStoresBy(whereQuery: any): Promise<Storefront[]>{
+        return this.storefrontRepository.find({
+            relations:{
+                storeProfile: true
+            },
+            where: {
+                ...whereQuery
+            }
+        })
+    }
 }

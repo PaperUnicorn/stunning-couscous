@@ -17,4 +17,9 @@ export class StorefrontController {
     findOne(@Param('id') id: string) {
       return this.service.findStoreById(id);
     }
+
+    @Get('')
+    findAll(@Param('merchantId') merchantId: string) {
+      return this.service.findStoresBy({merchant:{id: merchantId}});
+    }
 }
