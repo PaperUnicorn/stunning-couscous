@@ -17,4 +17,9 @@ export class RoleController {
     fetchAllRolesOfMerchant(@Param('merchantId') merchantId: string) {
         return this.service.getRolesOfMerchant(merchantId);
     }
+
+    @Get("/:roleId")
+    getRoleOfMerchant(@Param('merchantId') merchantId: string, @Param('roleId') roleId: string) {
+        return this.service.getRoleOfMerchat(roleId, merchantId);
+    }
 }

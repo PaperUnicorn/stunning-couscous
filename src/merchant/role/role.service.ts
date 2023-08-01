@@ -54,7 +54,7 @@ export class RoleService {
   }
 
   async getRolesOfMerchant(merchantId: string): Promise<Role[]> {
-    return await this.merchantRoleRepository.find({
+    const roles = await this.merchantRoleRepository.find({
       relations:{
         permissions: true
       },
@@ -62,6 +62,26 @@ export class RoleService {
         merchant: merchantId
       }
     })
+    if(!roles.length){
+      throw new HttpException("no such merchant", HttpStatus.NOT_FOUND)
+    }
+    return roles;
+  }
+
+  async getRoleOfMerchat(roleId: string,merchantId: string): Promise<Role> {
+    const role = await this.merchantRoleRepository.findOne({
+      relations:{
+        permissions: true
+      },
+      where: {
+        id: roleId,
+        merchant: merchantId
+      }
+    })
+    if(!role){
+      throw new HttpException("no such role", HttpStatus.NOT_FOUND)
+    }
+    return role;
   }
 
   
