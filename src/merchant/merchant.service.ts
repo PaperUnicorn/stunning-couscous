@@ -23,7 +23,7 @@ export class MerchantService {
     return await this.merchantRepository.findOne({
       relations: {
         users: true,
-        stores: true
+        stores: true,
       },
       where:{
         id

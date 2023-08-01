@@ -19,10 +19,11 @@ import { Storefront } from './entities/storefront.entity';
 import { StoreProfile } from './entities/store.profile.entity';
 import { Permission } from './entities/permission.entity';
 import { User } from './entities/user.entity';
+import { MerchantRole } from './entities/merchant-role.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary, Role, Permission, User, Storefront, StoreProfile]),
+    TypeOrmModule.forFeature([Merchant, Profile, Preferences, Summary, Role, Permission, User, Storefront, StoreProfile, MerchantRole]),
   ],
   controllers: [MerchantController, UserController, PermissionController, RoleController, StorefrontController],
   providers: [MerchantService, UserService, PermissionService, RoleService, StorefrontService],

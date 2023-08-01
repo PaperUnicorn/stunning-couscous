@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Role } from '../entities/role.entity';
 import { CreateRoleDTO } from '../dto/create-role.dto';
 import { Permission } from '../entities/permission.entity';
+import { MerchantRole } from '../entities/merchant-role.entity';
 
 @Injectable()
 export class RoleService {
@@ -11,10 +12,12 @@ export class RoleService {
       @InjectRepository(Role)
       private repository:Repository<Role>,
       @InjectRepository(Permission)
-      private permissionRepository:Repository<Permission>
+      private permissionRepository:Repository<Permission>,
+      @InjectRepository(MerchantRole)
+      private merchantRoleRepository:Repository<MerchantRole>
     ){}
 
-  async createRole(roleDTO: CreateRoleDTO): Promise<Role> {
+  async createRole(merchantId: string, roleDTO: CreateRoleDTO): Promise<Role> {
     var selectedPermissions: Permission[] = [];
     for(var permission of roleDTO.permissions){
       const found = await this.permissionRepository.findOneBy({
@@ -28,13 +31,14 @@ export class RoleService {
       selectedPermissions.push(found);
     }
 
-    const role: Partial<Role> = {
+    const role: Partial<MerchantRole> = {
       name: roleDTO.name,
       priority: roleDTO.priority,
       permissions: selectedPermissions,
+      merchant: merchantId,
       createdBy: 'user'
     }
-    return await this.repository.save(role)
+    return await this.merchantRoleRepository.save(role)
   }
 
   async getAllRoles(): Promise<Role[]> {
@@ -47,6 +51,17 @@ export class RoleService {
         createdBy: 'system'
       }
     });
+  }
+
+  async getRolesOfMerchant(merchantId: string): Promise<Role[]> {
+    return await this.merchantRoleRepository.find({
+      relations:{
+        permissions: true
+      },
+      where: {
+        merchant: merchantId
+      }
+    })
   }
 
   

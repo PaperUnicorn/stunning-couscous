@@ -1,13 +1,20 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateRoleDTO } from '../dto/create-role.dto';
 import { RoleService } from './role.service';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('role')
+@Controller(':merchantId/role')
+@ApiTags("role")
 export class RoleController {
     constructor(private readonly service: RoleService){}
 
     @Post()
-    createRole(@Body() role: CreateRoleDTO) {
-        return this.service.createRole(role);
+    createRole(@Param('merchantId') merchantId: string, @Body() role: CreateRoleDTO) {
+        return this.service.createRole(merchantId,role);
+    }
+
+    @Get()
+    fetchAllRolesOfMerchant(@Param('merchantId') merchantId: string) {
+        return this.service.getRolesOfMerchant(merchantId);
     }
 }
