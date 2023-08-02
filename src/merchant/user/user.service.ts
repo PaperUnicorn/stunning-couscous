@@ -5,6 +5,7 @@ import { User } from '../entities/user.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { Role } from '../entities/role.entity';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -22,7 +23,7 @@ export class UserService {
       if(role == null){
         throw new HttpException('must have a valid role', HttpStatus.BAD_REQUEST);
       }
-      console.log(request)
+
       const hashedPassword = await bcrypt.hash(request.password, 0)
       const user: Partial<User> = {
         email: request.email,
@@ -33,6 +34,33 @@ export class UserService {
       }
       return await this.repository.save(user);
     }
+
+    async update(request: UpdateUserDto): Promise<User>{
+      const user: Partial<User> = {
+        id: request.id,
+      }
+      if(request.email){
+        user.email = request.email;
+      }
+      if(request.username){
+        user.username = request.username
+      }
+      if(request.role){
+        const role = await this.roleRepository.findOneBy({id: request.role});
+        if(role == null){
+          throw new HttpException('must have a valid role', HttpStatus.BAD_REQUEST);
+        }
+        user.role = role;
+      }
+      
+      if(request.password){
+        const hashedPassword = await bcrypt.hash(request.password, 0)
+        user.password = hashedPassword;
+      }
+      console.log(user)
+      return await this.repository.save(user);
+    }
+    
 
     async getById(id: string) {
       return await this.repository.findOne({
@@ -46,12 +74,26 @@ export class UserService {
   }
 
   async findOneByUsername(username: string){
+    return await this.findOneBy({
+      username
+    });
+  }
+  async findOneByMerchant(user: Partial<User>, merchantId: string): Promise<User> {
+    user.merchant = merchantId;
+    return await this.findOneBy({
+      ...user,
+    })
+  }
+
+  async findOneBy(user: Partial<User>): Promise<User> {
+    console.log(user);
     return await this.repository.findOne({
       relations:{
-        role: true
-      },where:{
-        username
+        role: true,
+      },
+      where: {
+        id: user.id
       }
-    });
+    })
   }
 }

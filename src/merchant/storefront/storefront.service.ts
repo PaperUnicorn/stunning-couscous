@@ -3,7 +3,6 @@ import { Storefront } from '../entities/storefront.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateStorefrontDto } from '../dto/create-storefront.dto';
-import { StoreProfile } from '../entities/store.profile.entity';
 import { UpdateStorefrontDto } from '../dto/update-storefront.dto';
 
 @Injectable()
@@ -29,6 +28,7 @@ export class StorefrontService {
             merchant: merchantId,
             storeProfile,
         }
+        console.log(store)
         return await this.storefrontRepository.save(store);
         
     }
