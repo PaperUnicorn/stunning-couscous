@@ -20,6 +20,11 @@ export class UserController {
         return this.service.create(request, merchantId);
     }
 
+    @Get('')
+    getAllUsers(@Param('id') merchantId: string) {
+        return this.service.findAllByMerchant(merchantId);
+    }
+
 
     @Get(':userId')
     getUserById(@Param('id') merchantId: string, @Param('userId') userId: string) {
@@ -29,7 +34,8 @@ export class UserController {
 
     @Patch(':userId')
     async updateUserById(@Param('id') merchantId: string,@Param('userId') userId: string, @Body() request: UpdateUserDto) {
-        request.id = userId;
+        request.Id = userId;
+        console.log(request)
         const merchant = await this.service.findOneBy({id: userId, merchant: merchantId});
         if(!merchant){
             throw new HttpException('no such user present for this merchant', HttpStatus.NOT_FOUND);
