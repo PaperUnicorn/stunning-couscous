@@ -9,6 +9,7 @@ import { RouterModule } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthModule } from './auth/auth.module';
+import { ProgramModule } from './program/program.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { AuthModule } from './auth/auth.module';
     TenantModule,
     PassportModule,
     AuthModule,
+    ProgramModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthService],
