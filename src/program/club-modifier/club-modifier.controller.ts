@@ -8,7 +8,7 @@ import { UpdateClubModifierDto } from '../dto/update-club-modifier.dto';
 @ApiTags('club-modifier')
 @ApiSecurity('api-key')
 @UseGuards(ApiKeyAuthGuard)
-@Controller('club-modifier')
+@Controller('program/club/club-modifier')
 export class ClubModifierController {
     constructor(private readonly cmService: ClubModifierService) {}
 
