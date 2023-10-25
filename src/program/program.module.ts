@@ -8,12 +8,15 @@ import { ClubModifier } from './entities/club-modifier.entity';
 import { LoyaltyType } from './entities/loyalty-type.entity';
 import { LoyaltyTypeController } from './loyalty-type/loyalty-type.controller';
 import { LoyaltyTypeService } from './loyalty-type/loyalty-type.service';
+import { ClubController } from './club/club.controller';
+import { ClubService } from './club/club.service';
+import { Club } from './entities/club.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ClubModifier, LoyaltyType])
+    TypeOrmModule.forFeature([ClubModifier, LoyaltyType, Club])
   ],
-  controllers: [ProgramController, ClubModifierController, LoyaltyTypeController],
-  providers: [ProgramService, ClubModifierService, LoyaltyTypeService]
+  controllers: [ProgramController, ClubModifierController, LoyaltyTypeController, ClubController],
+  providers: [ProgramService, ClubModifierService, LoyaltyTypeService, ClubService]
 })
 export class ProgramModule {}

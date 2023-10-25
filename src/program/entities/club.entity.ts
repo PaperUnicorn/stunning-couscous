@@ -1,6 +1,7 @@
-import { PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn } from "typeorm";
+import { PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, Entity } from "typeorm";
 import { ClubModifier } from "./club-modifier.entity";
 
+@Entity()
 export class Club{
     @PrimaryGeneratedColumn()
     id: string;
