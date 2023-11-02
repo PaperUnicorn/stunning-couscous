@@ -1,4 +1,4 @@
-import { PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, Entity, OneToMany, ManyToOne } from "typeorm";
 import { ClubModifier } from "./club-modifier.entity";
 import { IsDateString } from "class-validator";
 
@@ -10,9 +10,9 @@ export class Club{
     @Column()
     name: string;
   
-    @ManyToMany(() => ClubModifier, (cm) => cm.id)
+    @ManyToOne(() => ClubModifier, (cm) => cm.id)
     @JoinColumn()
-    modifiers: ClubModifier[]
+    modifiers: string[]
 
     @Column()
     createdBy: string;
