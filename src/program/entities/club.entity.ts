@@ -10,9 +10,8 @@ export class Club{
     @Column()
     name: string;
   
-    @ManyToOne(() => ClubModifier, (cm) => cm.id)
-    @JoinColumn()
-    modifiers: string[]
+    @ManyToOne(() => ClubModifier, (cm) => cm.club)
+    modifiers: ClubModifier[]
 
     @Column()
     createdBy: string;

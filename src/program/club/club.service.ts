@@ -17,14 +17,14 @@ export class ClubService {
         ){}
 
     async create(createClubDto: CreateClubDto) {
-        const modifiers: string[] = [] ;
+        const modifiers: ClubModifier [] = [] ;
         for(const id of createClubDto.modifiers){
           await this.clubModifierRepository.findOneBy({id})
           .then((clubM) => {
             if(clubM == null || clubM == undefined){
               throw new HttpException("no club modifier with that id found", 400);
             }
-            modifiers.push(clubM.id);
+            modifiers.push(clubM);
           })
         }
         console.log(modifiers)
@@ -34,6 +34,7 @@ export class ClubService {
           createdBy: 'user',
           createdOn: new Date()
         }
+        console.log(club)
         return this.clubRepository.save(club);
       }
     

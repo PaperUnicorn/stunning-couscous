@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToOne } from "typeorm";
+import { Club } from "./club.entity";
 
 @Entity()
 export class ClubModifier {
@@ -13,5 +14,8 @@ export class ClubModifier {
 
     @Column()
     pointScale: number;
+
+    @ManyToOne(()=> Club, (club) => club.modifiers)
+    club: string;
     
 }
